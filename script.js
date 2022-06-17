@@ -23,11 +23,11 @@ makeRow();
 function colorize(event) {
   const clickedEvent = event.target;
   const tag = event.target.tagName;
-    if (clickedEvent.className === "") {
-        clickedEvent.className = globalClassName;
-    }  else {
-        clickedEvent.className = "";
-    }
+  if (clickedEvent.className === "") {
+    clickedEvent.className = globalClassName;
+  } else {
+    clickedEvent.className = "";
+  }
 }
 
 table.addEventListener("click", function (event) {
@@ -37,16 +37,33 @@ table.addEventListener("click", function (event) {
 
 const sel = document.querySelector("select");
 
-sel.addEventListener("change", function(event) {
-    colorizeAgain(event);
+sel.addEventListener("change", function (event) {
+  colorizeAgain(event);
 });
 
 function colorizeAgain(event) {
-    const target = event.target;
-    console.log(event.target.value)
-    //target.className = event.target.value;
-    globalClassName = event.target.value;
+  const target = event.target;
+  console.log(event.target.value);
+  //target.className = event.target.value;
+  globalClassName = event.target.value;
 }
 
-let globalClassName = 'red';
+let globalClassName = "red";
+let globalMouseEvent = false;
 
+table.addEventListener("mouseup", function (event) {
+  globalMouseEvent = false;
+  console.log(globalMouseEvent);
+});
+
+table.addEventListener("mousedown", function (event) {
+  globalMouseEvent = true;
+  console.log(globalMouseEvent);
+});
+
+table.addEventListener("mouseover", function (event) {
+  console.log(globalMouseEvent);
+  if (globalMouseEvent === true) {
+    colorize(event);
+  }
+});
