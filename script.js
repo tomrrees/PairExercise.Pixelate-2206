@@ -22,15 +22,17 @@ makeRow();
 
 function colorize(event) {
   const clickedEvent = event.target;
-  if (clickedEvent.className === "") {
-    clickedEvent.className = globalClassName;
-  } else {
-    clickedEvent.className = "";
-  }
+  const tag = event.target.tagName;
+    if (clickedEvent.className === "") {
+        clickedEvent.className = globalClassName;
+    }  else {
+        clickedEvent.className = "";
+    }
 }
 
 table.addEventListener("click", function (event) {
-  colorize(event);
+  const tag = event.target.tagName;
+  if (tag != "TABLE") colorize(event);
 });
 
 const sel = document.querySelector("select");
@@ -47,3 +49,4 @@ function colorizeAgain(event) {
 }
 
 let globalClassName = 'red';
+
