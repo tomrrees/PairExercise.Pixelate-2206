@@ -20,23 +20,10 @@ makeRow();
 makeRow();
 makeRow();
 
-// table.addEventListener("click") {
-//     colorize();
-// }
-
-// function colorize(event) {
-//   let clickedEvent = event.target;
-//   if (clickedEvent.className === "") {
-//     clickedEvent.className = "red";
-//   } else {
-//     clickedEvent.className = "";
-//   }
-// });
-
 function colorize(event) {
   const clickedEvent = event.target;
   if (clickedEvent.className === "") {
-    clickedEvent.className = "red";
+    clickedEvent.className = globalClassName;
   } else {
     clickedEvent.className = "";
   }
@@ -45,3 +32,18 @@ function colorize(event) {
 table.addEventListener("click", function (event) {
   colorize(event);
 });
+
+const sel = document.querySelector("select");
+
+sel.addEventListener("change", function(event) {
+    colorizeAgain(event);
+});
+
+function colorizeAgain(event) {
+    const target = event.target;
+    console.log(event.target.value)
+    //target.className = event.target.value;
+    globalClassName = event.target.value;
+}
+
+let globalClassName = 'red';
